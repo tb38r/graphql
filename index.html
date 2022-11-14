@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="index.css">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,59 +11,36 @@
 
 </head>
 <body>
-    <div id="graphdata"></div>
+    <header class="graphdata"></header>
     
 </body>
+<script type="text/javascript" src="queryfuncs.js"></script>
+
+
+<!-- Basic User Data -->
 <script>
-    const queryString = 
-`query {
-    user (where:{login:{_eq:"tb38r"}}){
-      login:
-      transactions(order_by:{amount: desc}){
-        object{
-          name
-        }
-        amount
-      }
-      progresses(where:{
-              _and: [{object:{type:{_eq:"project"}}}, {isDone: {_eq: true}}]}){
-        createdAt
-        updatedAt
-        object {
-          name
-        }
-  
-      }
-    }
-  }
-        `
+let headerDiv = document.getElementsByClassName('graphdata')
 
 
+let basicDataQuery = `
+{ user (where:{login:{_eq:"tb38r"}}){
+    id
+    login
+    
+  }}
+`
+fetchQuery(userOptions(basicDataQuery))
+.then((data)=>{
+    Object.entries(data.data.user[0]).forEach(
+        ([key, value]) => {console.log(key, value)
+            let headerdata = document.createElement('div');
+            headerdata.innerHTML = `${key}:${value}`  
+            headerDiv[0].appendChild(headerdata)
+            
+         })
 
-const userOptions = {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: queryString,
-      // query: getBooksQuery(keyword),
-    }),
-  };
+})
 
-
-const displayQueryResult=(data)=>{
-    for (const item of data.data.user) {
-       console.log(item);
-        
-    }
-}
-  
-
-  fetch('https://learn.01founders.co/api/graphql-engine/v1/graphql', userOptions)
-  .then((res) => res.json())
-  .then(function (userdata) {
-    displayQueryResult(userdata);
-  });
 </script>
+
 </html>
