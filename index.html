@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <script src="test.js" defer></script> -->
 
 </head>
 <body>
@@ -18,29 +17,56 @@
 
 
 <!-- Basic User Data -->
+<script type="text/javascript" src="basicdata.js"></script>
+
+<!-- XP -->
 <script>
-let headerDiv = document.getElementsByClassName('graphdata')
 
 
-let basicDataQuery = `
+let totalXPQuery = `
 { user (where:{login:{_eq:"tb38r"}}){
-    id
-    login
-    
-  }}
+  id
+  login
+      transactions(order_by:{amount: desc}){
+
+    amount
+    object{
+      name
+      id
+    }
+  } 
+}}
 `
-fetchQuery(userOptions(basicDataQuery))
+let XPArr = {}
+fetchQuery(userOptions(totalXPQuery))
 .then((data)=>{
-    Object.entries(data.data.user[0]).forEach(
-        ([key, value]) => {console.log(key, value)
-            let headerdata = document.createElement('div');
-            headerdata.innerHTML = `${key}:${value}`  
-            headerDiv[0].appendChild(headerdata)
-            
-         })
+   for (const obj of data.data.user[0].transactions) {
+    if(!XPArr.hasOwnProperty(obj.object.name)){
+        XPArr[obj.object.name] = obj.amount
+    }else{
+        //has key compare values
+        if(obj.amount > XPArr[obj.object.name]){
+            XPArr[obj.object.name] = obj.amount
+        }
 
-})
+    }
+   }
+console.log(GetXP())
+}
+);
+const GetXP =()=>{
+let sum =0
+for (const [key, value] of Object.entries(XPArr)) {
+    console.log(key, value)
 
+
+	sum += value
+}
+return sum
+}
+console.log('POST--->', XPArr);
+
+  
 </script>
 
 </html>
