@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="test.js" defer></script> -->
+
+</head>
+<body>
+    <div id="graphdata"></div>
+    
+</body>
+<script>
+    const queryString = 
+`query {
+    user (where:{login:{_eq:"tb38r"}}){
+      login:
+      transactions(order_by:{amount: desc}){
+        object{
+          name
+        }
+        amount
+      }
+      progresses(where:{
+              _and: [{object:{type:{_eq:"project"}}}, {isDone: {_eq: true}}]}){
+        createdAt
+        updatedAt
+        object {
+          name
+        }
+  
+      }
+    }
+  }
+        `
+
+
+
+const userOptions = {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: queryString,
+      // query: getBooksQuery(keyword),
+    }),
+  };
+
+
+const displayQueryResult=(data)=>{
+    for (const item of data.data.user) {
+       console.log(item);
+        
+    }
+}
+  
+
+  fetch('https://learn.01founders.co/api/graphql-engine/v1/graphql', userOptions)
+  .then((res) => res.json())
+  .then(function (userdata) {
+    displayQueryResult(userdata);
+  });
+</script>
+</html>
