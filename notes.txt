@@ -35,4 +35,26 @@
   }
         `
 
+
+
+
+
+         { user (where:{login:{_eq:"tb38r"}}){
+  id
+  login
+      transactions(order_by:{amount: desc}){
+
+    amount
+    object{
+      name
+      id
+      type
+  
+    }
+  } 
+}
+  
+
+}
+
         https://stackoverflow.com/questions/65420524/how-to-query-with-multiple-and-conditions-in-where-clause-in-strapi-graphql
