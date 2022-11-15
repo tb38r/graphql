@@ -23,24 +23,46 @@
 <script>
 
 
-let totalXPQuery = `
-{ user (where:{login:{_eq:"tb38r"}}){
-  id
-  login
-      transactions(order_by:{amount: desc}){
-
-    amount
-    object{
-      name
-      id
-    }
-  } 
-}}
+let transactionsProgresses= `
+query{
+    user(where: {login: {_eq: "tb38r"}}){
+        login
+        id
+        progresses(where:{
+            _and: [{object:{type:{_eq:"project"}}}, {isDone: {_eq: true}}]}){
+          createdAt
+          updatedAt
+          results{
+            grade
+          }
+          object{
+            name
+          }
+        }
+        transactions(
+            where: {_and: [{object: {type: {_eq: "project"}}}, {type: {_eq: "xp"}},{amount:{_gte:4000}}]}
+            order_by: {amount: desc}) {
+            amount
+            object {
+              name
+            }
+          }
+       }
+}
 `
 let XPArr = {}
-fetchQuery(userOptions(totalXPQuery))
+fetchQuery(userOptions(transactionsProgresses))
 .then((data)=>{
-   for (const obj of data.data.user[0].transactions) {
+
+    let transactions = data.data.user[0].transactions;
+let progresses = data.data.user[0].progresses;
+
+console.log('transacs', transactions);
+console.log('progs', progresses);
+
+
+
+   for (const obj of transactions) {
     if(!XPArr.hasOwnProperty(obj.object.name)){
         XPArr[obj.object.name] = obj.amount
     }else{
@@ -64,7 +86,7 @@ for (const [key, value] of Object.entries(XPArr)) {
 }
 return sum
 }
-console.log('POST--->', XPArr);
+//console.log('POST--->', XPArr);
 
   
 </script>

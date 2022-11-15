@@ -9,52 +9,32 @@
 `
 
 
+//return projects sans errorneous 3
 
-//Some added
-
-
-`query {
-    user (where:{login:{_eq:"tb38r"}}){
-      login:
-      transactions(order_by:{amount: desc}){
-        object{
-          name
+query{
+    user(where: {login: {_eq: "tb38r"}}){
+        login
+        id
+        progresses(where:{
+            _and: [{object:{type:{_eq:"project"}}}, {isDone: {_eq: true}}]}){
+          createdAt
+          updatedAt
+          results{
+            grade
+          }
+          object{
+            name
+          }
         }
-        amount
-      }
-      progresses(where:{
-              _and: [{object:{type:{_eq:"project"}}}, {isDone: {_eq: true}}]}){
-        createdAt
-        updatedAt
-        object {
-          name
-        }
-  
-      }
-    }
-  }
-        `
-
-
-
-
-
-         { user (where:{login:{_eq:"tb38r"}}){
-  id
-  login
-      transactions(order_by:{amount: desc}){
-
-    amount
-    object{
-      name
-      id
-      type
-  
-    }
-  } 
-}
-  
-
+        transactions(
+            where: {_and: [{object: {type: {_eq: "project"}}}, {type: {_eq: "xp"}},{amount:{_gte:4000}}]}
+            order_by: {amount: desc}) {
+            amount
+            object {
+              name
+            }
+          }
+       }
 }
 
-        https://stackoverflow.com/questions/65420524/how-to-query-with-multiple-and-conditions-in-where-clause-in-strapi-graphql
+
