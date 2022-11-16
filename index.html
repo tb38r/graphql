@@ -12,6 +12,7 @@
 <body>
     <header class="graphdata"></header>
     <div class="projects"></div>
+    <div class="totalxp"></div>
     
 </body>
 <script type="text/javascript" src="queryfuncs.js"></script>
@@ -23,6 +24,7 @@
 <!-- XP -->
 <script>
 let projectsDiv = document.getElementsByClassName('projects')[0]
+let totalXPDiv = document.getElementsByClassName('totalxp')[0]
 
 let transactionsProgresses= `
 query{
@@ -44,7 +46,7 @@ transactions(where:{_or:[
 
 
 ]}){
-   
+   createdAt
             amount
             object {
               name
@@ -82,8 +84,10 @@ console.log(GetXP(sortedXPArr))
 }
 );
 
+
+
 const GetXP =(arg)=>{
-let sum =0
+  let sum =0
 for (const [key, value] of Object.entries(arg)) {
     console.log(key, value)
     let projectDiv = document.createElement('div')
@@ -98,9 +102,13 @@ for (const [key, value] of Object.entries(arg)) {
  
 
 	sum += value
+  
 }
+totalXPDiv.innerHTML = sum
 return sum
 }
+
+
 //console.log('POST--->', XPArr);
 
   
