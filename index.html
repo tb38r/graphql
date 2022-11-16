@@ -11,6 +11,7 @@
 </head>
 <body>
     <header class="graphdata"></header>
+    <div class="projects"></div>
     
 </body>
 <script type="text/javascript" src="queryfuncs.js"></script>
@@ -21,7 +22,7 @@
 
 <!-- XP -->
 <script>
-
+let projectsDiv = document.getElementsByClassName('projects')[0]
 
 let transactionsProgresses= `
 query{
@@ -53,36 +54,48 @@ transactions(where:{_or:[
 }
 `
 let XPArr = {}
+let sortedXPArr
+
 fetchQuery(userOptions(transactionsProgresses))
 .then((data)=>{
 
     let transactions = data.data.user[0].transactions;
-let progresses = data.data.user[0].progresses;
-
 console.log('transacs', transactions);
-console.log('progs', progresses);
-
 
 
    for (const obj of transactions) {
     if(!XPArr.hasOwnProperty(obj.object.name)){
         XPArr[obj.object.name] = obj.amount
     }else{
-        //has key compare values
         if(obj.amount > XPArr[obj.object.name]){
             XPArr[obj.object.name] = obj.amount
         }
 
     }
    }
-console.log(GetXP())
+
+   const sortedXPArr = Object.fromEntries(
+    Object.entries(XPArr).sort(([, a], [, b]) => a - b)
+)
+
+console.log(GetXP(sortedXPArr))
 }
 );
-const GetXP =()=>{
-let sum =0
-for (const [key, value] of Object.entries(XPArr)) {
-    console.log(key, value)
 
+const GetXP =(arg)=>{
+let sum =0
+for (const [key, value] of Object.entries(arg)) {
+    console.log(key, value)
+    let projectDiv = document.createElement('div')
+    let amountDiv = document.createElement('div')
+    let combinedDiv = document.createElement('div')
+    combinedDiv.classList.add('combineddiv')
+    projectDiv.innerHTML = key
+    amountDiv.innerHTML = value
+    combinedDiv.appendChild(projectDiv)
+    combinedDiv.appendChild(amountDiv)
+    projectsDiv.appendChild(combinedDiv)
+ 
 
 	sum += value
 }

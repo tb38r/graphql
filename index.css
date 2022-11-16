@@ -2,3 +2,10 @@
     display: flex;
     justify-content: space-evenly; 
 }
+
+.combineddiv{
+    display: flex;
+    justify-content: space-between; 
+    width: 30%;
+
+}
