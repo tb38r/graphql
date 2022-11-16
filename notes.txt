@@ -9,7 +9,7 @@
 `
 
 
-//return projects sans errorneous 3
+//return (transactions) projects sans errorneous 3
 
 query{
     user(where: {login: {_eq: "tb38r"}}){
@@ -79,5 +79,71 @@ query{
 }
 
 
+
+
+//////Returns 5 Checkpoint exams progresses
+
+ progresses(where:{
+             _and: [{createdAt:{_gt:"2022-03-15"}},{createdAt:{_lt:"2022-03-17"}},{object:{type:{_eq:"exercise"}}}, {isDone: {_eq: true}},{results:{grade:{_gt:0}}}]}){
+           createdAt
+           updatedAt
+      
+           results{
+             grade
+         }
+           object{
+            name
+            type
+            
+          }
+        }
+
+
+
+        ///Returns 5 Checkpoint exams TRANSACTIONS
+
+          transactions(where:{
+             _and: [{
+              createdAt:{_gt:"2022-03-15"}},
+              {createdAt:{_lt:"2022-03-17"}},
+              {object:{type:{_eq:"exercise"}}},
+              {amount:{_gte:100}}
+            ]}){
+            amount
+            object {
+              name
+            }
+          }
+
+
+
+
+
 //https://dgraph.io/docs/graphql/queries/and-or-not/
 //https://levelup.gitconnected.com/how-to-run-multiple-queries-at-once-using-graphqls-apollo-client-c24bea52e079
+
+
+transactions(where:{
+             _and: [{createdAt:{_gt:"2022-03-15"}},{createdAt:{_lt:"2022-03-17"}},{object:{type:{_eq:"exercise"}}},{amount:{_gte:100}}]}){
+    #(
+     #       where: {_and: [{object: {type: {_eq: "project"}}}, {type: {_eq: "xp"}},{amount:{_gte:4000}}]}
+      #      order_by: {amount: desc}) {
+            amount
+            object {
+              name
+            }
+          }
+
+
+
+
+          //TRANSACTIONS FOR PISCINE
+      
+      transactions(where:{
+             _and: [{object:{type:{_eq:"piscine"}}},{amount:{_gte:100}}]}){
+ 
+            amount
+            object {
+              name
+            }
+          }

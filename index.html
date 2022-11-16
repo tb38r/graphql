@@ -25,23 +25,25 @@
 
 let transactionsProgresses= `
 query{
-    user(where: {login: {_eq: "tb38r"}}){
-        login
-        id
-        progresses(where:{
-            _and: [{object:{type:{_eq:"project"}}}, {isDone: {_eq: true}}]}){
-          createdAt
-          updatedAt
-          results{
-            grade
-          }
-          object{
-            name
-          }
-        }
-        transactions(
-            where: {_and: [{object: {type: {_eq: "project"}}}, {type: {_eq: "xp"}},{amount:{_gte:4000}}]}
-            order_by: {amount: desc}) {
+   user(where: {login: {_eq: "tb38r"}}){
+
+      
+transactions(where:{_or:[
+            { _and: [{object:{type:{_eq:"piscine"}}},{amount:{_gte:100}}]},
+  
+{
+             _and: [{
+              createdAt:{_gt:"2022-03-15"}},
+              {createdAt:{_lt:"2022-03-17"}},
+              {object:{type:{_eq:"exercise"}}},
+              {amount:{_gte:100}}
+            ]},
+
+{_and: [{object: {type: {_eq: "project"}}}, {type: {_eq: "xp"}},{amount:{_gte:4000}}]},
+
+
+]}){
+   
             amount
             object {
               name
