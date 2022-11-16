@@ -38,3 +38,46 @@ query{
 }
 
 
+
+
+//returns progresion of the 5 exams
+
+query{
+    user(where: {login: {_eq: "tb38r"}}){
+        # login
+        # id
+    #  users(where: {
+    #last_login_date: {_gte: "2021-01-20", _lte: "2021-02-20"}}) {
+
+         progresses(where:{
+             _and: [{createdAt:{_gt:"2022-03-15"}},{createdAt:{_lt:"2022-03-17"}},{object:{type:{_eq:"exercise"}}}, {isDone: {_eq: true}}]}){
+           createdAt
+           updatedAt
+      
+        #   results{
+        #     grade
+        #   }
+           object{
+            name
+            type
+            
+          }
+        }
+
+        transactions(
+            where: {_and: [ {type: {_eq: "xp"}},{amount:{_gte:100}}]}
+            order_by: {amount: asc}) {
+            amount
+            object {
+              name
+              type
+            
+              
+            }
+          }
+       }
+}
+
+
+//https://dgraph.io/docs/graphql/queries/and-or-not/
+//https://levelup.gitconnected.com/how-to-run-multiple-queries-at-once-using-graphqls-apollo-client-c24bea52e079
