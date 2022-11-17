@@ -13,105 +13,21 @@
     <header class="graphdata"></header>
     <div class="projects"></div>
     <div class="totalxp"></div>
+
     
+
+
 </body>
-<script type="text/javascript" src="queryfuncs.js"></script>
+<script type="text/javascript" src="./queries/queryfuncs.js"></script>
 
 
 <!-- Basic User Data -->
-<script type="text/javascript" src="basicdata.js"></script>
+<script type="text/javascript" src="./queries/basicdata.js"></script>
 
 <!-- XP -->
-<script>
-let projectsDiv = document.getElementsByClassName('projects')[0]
-let totalXPDiv = document.getElementsByClassName('totalxp')[0]
+<script type="text/javascript" src="./queries/xpamount.js"></script>
 
-let transactionsProgresses= `
-query{
-   user(where: {login: {_eq: "tb38r"}}){
-
-      
-transactions(where:{_or:[
-            { _and: [{object:{type:{_eq:"piscine"}}},{amount:{_gte:100}}]},
-  
-{
-             _and: [{
-              createdAt:{_gt:"2022-03-15"}},
-              {createdAt:{_lt:"2022-03-17"}},
-              {object:{type:{_eq:"exercise"}}},
-              {amount:{_gte:100}}
-            ]},
-
-{_and: [{object: {type: {_eq: "project"}}}, {type: {_eq: "xp"}},{amount:{_gte:4000}}]},
-
-
-]}){
-   createdAt
-            amount
-            object {
-              name
-            }
-          }
-       }
-}
-`
-let XPArr = {}
-let sortedXPArr
-
-fetchQuery(userOptions(transactionsProgresses))
-.then((data)=>{
-
-    let transactions = data.data.user[0].transactions;
-console.log('transacs', transactions);
-
-
-   for (const obj of transactions) {
-    if(!XPArr.hasOwnProperty(obj.object.name)){
-        XPArr[obj.object.name] = obj.amount
-    }else{
-        if(obj.amount > XPArr[obj.object.name]){
-            XPArr[obj.object.name] = obj.amount
-        }
-
-    }
-   }
-
-   const sortedXPArr = Object.fromEntries(
-    Object.entries(XPArr).sort(([, a], [, b]) => a - b)
-)
-
-console.log(GetXP(sortedXPArr))
-}
-);
-
-
-
-const GetXP =(arg)=>{
-  let sum =0
-for (const [key, value] of Object.entries(arg)) {
-    console.log(key, value)
-    let projectDiv = document.createElement('div')
-    let amountDiv = document.createElement('div')
-    let combinedDiv = document.createElement('div')
-    combinedDiv.classList.add('combineddiv')
-    projectDiv.innerHTML = key
-    amountDiv.innerHTML = value
-    combinedDiv.appendChild(projectDiv)
-    combinedDiv.appendChild(amountDiv)
-    projectsDiv.appendChild(combinedDiv)
- 
-
-	sum += value
-  
-}
-totalXPDiv.innerHTML = sum
-return sum
-}
-
-
-//console.log('POST--->', XPArr);
-
-  
-</script>
+<!-- grades -->
+<script type="text/javascript" src="./queries/grades.js"></script>
 
 </html>
