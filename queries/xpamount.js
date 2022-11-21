@@ -1,5 +1,7 @@
 let projectsDiv = document.getElementsByClassName('projects')[0]
 let totalXPDiv = document.getElementsByClassName('totalxp')[0]
+let transactions
+let nextFunc = false
 
 let transactionsProgresses= `
 query{
@@ -36,7 +38,8 @@ let sortedXPObj
 fetchQuery(userOptions(transactionsProgresses))
 .then((data)=>{
 
-    let transactions = data.data.user[0].transactions;
+    transactions = data.data.user[0].transactions;
+    nextFunc=true
 console.log('transacs', transactions);
 
 
@@ -55,7 +58,7 @@ console.log('transacs', transactions);
     Object.entries(XPObj).sort(([, a], [, b]) => a - b)
 )
 
-console.log(GetXP(sortedXPObj))
+console.log('GetXPSorted',GetXP(sortedXPObj))
 }
 );
 

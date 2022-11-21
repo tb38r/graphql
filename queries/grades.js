@@ -51,7 +51,8 @@ console.log('grades', grades);
 // )
 // const date1 = new Date('2017-11-25T23:45:35.116Z').toISOString();
 // console.log({date1});
-console.log('GRADESOBJ', gradesObj);
+console.log('GRADESOBJPRE', gradesObj);
+
 // let firstDate = new Date(grades[0].updatedAt)
 // timeBetween = firstDate.getTime()- new Date(grades[0].createdAt).getTime()
 // console.log('DaysBetween?', timeBetween/(1000*3600*24))
@@ -62,3 +63,27 @@ console.log('GRADESOBJ', gradesObj);
 
 }
 );
+
+
+
+if(nextFunc){
+  console.log('hi');
+  //ascii-art : {grade: 1.5428571428571431, toComplete: 2}
+
+for (const item of transactions) {
+  if(gradesObj.hasOwnProperty(item.object.name)){
+    if (!gradesObj[item.object.name].hasOwnProperty('xp')){
+
+      gradesObj[item.object.name].xp = item.amount
+    }else{
+      console.log('a',item.amount);
+    }
+
+  }
+  //console.log('i',item.object.name);
+  
+}
+
+  console.log('POSTGRADESOBJ', gradesObj);
+
+}
