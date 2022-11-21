@@ -9,3 +9,29 @@
     width: 30%;
 
 }
+
+.container {
+    width: 90vw;
+    overflow-x: scroll;
+    white-space: nowrap;
+    background-color: #fff;
+    display: flex;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scroll-disabler {
+    width: 100vw;
+    height: 34.4px;
+    position: absolute;
+    background-color: rgba(0,0,0 , 0.0001);
+  }
+  
+   ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  p {
+    padding: 8px;
+  }
+  
