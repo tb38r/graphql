@@ -21,8 +21,6 @@ query{
 
 `
 
-let gradesObj = {}
-let completion= {}
 
 fetchQuery(userOptions(cumulativeGrades))
 .then((data)=>{

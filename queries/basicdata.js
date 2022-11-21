@@ -1,4 +1,3 @@
-let headerDiv = document.getElementsByClassName('graphdata')
 
 
 let basicDataQuery = `

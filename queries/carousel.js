@@ -1,6 +1,4 @@
-const gradesXPDiv = document.getElementById('gradesXPDiv');
-const gradesXPScrollWidth = gradesXPDiv.scrollWidth;
-let dataLoaded = false
+
 
 
 

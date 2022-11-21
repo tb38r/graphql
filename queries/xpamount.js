@@ -1,6 +1,3 @@
-let projectsDiv = document.getElementsByClassName('projects')[0]
-//let totalXPDiv = document.getElementsByClassName('totalxp')[0]
-let transactions
 
 let transactionsProgresses= `
 query{
@@ -31,8 +28,7 @@ transactions(where:{_or:[
        }
 }
 `
-let XPObj = {}
-let sortedXPObj
+
 
 
 fetchQuery(userOptions(transactionsProgresses))
@@ -68,18 +64,13 @@ addXPToHeader(GetXP(sortedXPObj))
 const GetXP =(arg)=>{
   let sum =0
 for (const [key, value] of Object.entries(arg)) {
- 
- 
 	sum += value
-  
 }
-
 return sum
 }
 
 
 const addXPToHeader = (arg)=>{
-
 
             let headerdata = document.createElement('div');
             headerdata.innerHTML = `totalXP:${arg}`  
@@ -87,4 +78,3 @@ const addXPToHeader = (arg)=>{
 }            
 
 
-//console.log('POST--->', XPObj);
