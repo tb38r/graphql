@@ -1,7 +1,6 @@
 let projectsDiv = document.getElementsByClassName('projects')[0]
-let totalXPDiv = document.getElementsByClassName('totalxp')[0]
+//let totalXPDiv = document.getElementsByClassName('totalxp')[0]
 let transactions
-let nextFunc = false
 
 let transactionsProgresses= `
 query{
@@ -35,12 +34,13 @@ transactions(where:{_or:[
 let XPObj = {}
 let sortedXPObj
 
+
 fetchQuery(userOptions(transactionsProgresses))
 .then((data)=>{
 
     transactions = data.data.user[0].transactions;
-    nextFunc=true
-console.log('transacs', transactions);
+    updateGradesObj()
+//console.log('transacs', transactions);
 
 
    for (const obj of transactions) {
@@ -58,7 +58,8 @@ console.log('transacs', transactions);
     Object.entries(XPObj).sort(([, a], [, b]) => a - b)
 )
 
-console.log('GetXPSorted',GetXP(sortedXPObj))
+//console.log('GetXPSorted',GetXP(sortedXPObj))
+addXPToHeader(GetXP(sortedXPObj))
 }
 );
 
@@ -67,24 +68,23 @@ console.log('GetXPSorted',GetXP(sortedXPObj))
 const GetXP =(arg)=>{
   let sum =0
 for (const [key, value] of Object.entries(arg)) {
-   // console.log(key, value)
-    let projectDiv = document.createElement('div')
-    let amountDiv = document.createElement('div')
-    let combinedDiv = document.createElement('div')
-    combinedDiv.classList.add('combineddiv')
-    projectDiv.innerHTML = key
-    amountDiv.innerHTML = value
-    combinedDiv.appendChild(projectDiv)
-    combinedDiv.appendChild(amountDiv)
-    projectsDiv.appendChild(combinedDiv)
  
-
+ 
 	sum += value
   
 }
-totalXPDiv.innerHTML = sum
+
 return sum
 }
+
+
+const addXPToHeader = (arg)=>{
+
+
+            let headerdata = document.createElement('div');
+            headerdata.innerHTML = `totalXP:${arg}`  
+            headerDiv[0].appendChild(headerdata)
+}            
 
 
 //console.log('POST--->', XPObj);
