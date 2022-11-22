@@ -48,23 +48,30 @@ EDIT ON
   transition: fill 0.3s ease;
   cursor: pointer;
   font-family: Helvetica, sans-serif;
+
 }
 .bar text {
   fill: #555;
+  color: white;
 }
 
 .chart:hover .bar,
 .chart:focus .bar {
   fill: #aaa;
+  color:white;
 }
 
 .bar:hover,
 .bar:focus {
   fill: red !important;
+  color:white;
+
 }
 .bar:hover text,
 .bar:focus text {
   fill: red;
+  color:white;
+
 }
 
 figcaption {

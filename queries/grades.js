@@ -26,7 +26,6 @@ fetchQuery(userOptions(cumulativeGrades))
 .then((data)=>{
 
     let grades = data.data.user[0].progresses;
-//console.log('grades', grades);
 
 
    for (const obj of grades) {
@@ -68,6 +67,7 @@ for (const item of transactions) {
   }
 }
 
+
 populateCarousel(gradesObj)
 
 }
@@ -81,6 +81,14 @@ const populateCarousel =(obj)=>{
    gradesXPDiv.appendChild(pTag);
 });
 
+
+
+const sorted = Object.fromEntries(
+  Object.entries(gradesObj).sort((x, y) => x[1].toComplete - y[1].toComplete)
+);
+
+
+populateBarChart(sorted)
 
 }
 
