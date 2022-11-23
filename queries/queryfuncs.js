@@ -11,13 +11,11 @@ const userOptions = (queryString)=> {
   };
 }
 
-const fetchQuery = (useroptions) =>{
+const fetchQuery = async (useroptions) =>{
   
-     return fetch('https://learn.01founders.co/api/graphql-engine/v1/graphql', useroptions)
-  .then((res) => res.json())
-  .then( (userdata) =>{
-    return userdata
-  });
+     const res = await fetch('https://learn.01founders.co/api/graphql-engine/v1/graphql', useroptions);
+  const userdata = await res.json();
+  return userdata;
 
 }
   

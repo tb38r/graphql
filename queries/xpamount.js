@@ -35,29 +35,31 @@ fetchQuery(userOptions(transactionsProgresses))
 .then((data)=>{
 
     transactions = data.data.user[0].transactions;
-    updateGradesObj()
-//console.log('transacs', transactions);
-
+    //console.log('transacs', transactions);
+    
 
    for (const obj of transactions) {
-    if(!XPObj.hasOwnProperty(obj.object.name)){
+     if(!XPObj.hasOwnProperty(obj.object.name)){
         XPObj[obj.object.name] = obj.amount
-    }else{
+      }else{
         if(obj.amount > XPObj[obj.object.name]){
             XPObj[obj.object.name] = obj.amount
+          }
+          
         }
-
-    }
    }
 
    const sortedXPObj = Object.fromEntries(
-    Object.entries(XPObj).sort(([, a], [, b]) => a - b)
-)
+     Object.entries(XPObj).sort(([, a], [, b]) => a - b)
+     )
 
-//console.log('GetXPSorted',GetXP(sortedXPObj))
-addXPToHeader(GetXP(sortedXPObj))
-}
-);
+     return sortedXPObj
+     //console.log('GetXPSorted',GetXP(sortedXPObj))
+    }).then((data)=>{
+      addXPToHeader(GetXP(data))
+      updateGradesObj(transactions)
+
+})
 
 
 

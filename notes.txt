@@ -1,5 +1,7 @@
 //Basic Info
 
+//https://stackoverflow.com/questions/59921845/math-to-create-svg-pie-chart-without-using-css-or-js
+
 `
 { user (where:{login:{_eq:"tb38r"}}){
     id

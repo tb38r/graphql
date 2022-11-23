@@ -51,10 +51,10 @@ fetchQuery(userOptions(cumulativeGrades))
 
 
 
-const updateGradesObj =()=>{
+const updateGradesObj =(data)=>{
 
 
-for (const item of transactions) {
+for (const item of data) {
   if(gradesObj.hasOwnProperty(item.object.name)){
     if (!gradesObj[item.object.name].hasOwnProperty('xp')){
       gradesObj[item.object.name].xp = item.amount
