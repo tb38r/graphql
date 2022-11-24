@@ -28,7 +28,7 @@ const BuildPieChart = (xps, data)=>{
 
         let legend = document.createElement('div')
         legend.className = 'legends' 
-        legend.innerText = `${key}${proportion.toFixed(2)}%`
+        legend.innerText = `${key} : ${proportion.toFixed(2)}%`
         legend.style.backgroundColor = `#${randomColor}`
         //legend.style.color = randomColor
         console.log('pp',pieLegend);

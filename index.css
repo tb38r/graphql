@@ -1,11 +1,13 @@
 body {
   font-family: "Open Sans", sans-serif;
   width: 100vw;
+  background-color: black;
 }
 
 .graphdata{
     display: flex;
     justify-content: space-evenly; 
+    color:white;
 }
 
 .combineddiv{
@@ -50,7 +52,7 @@ body {
 
 }
 .bar text {
-  fill: #555;
+  fill: white;
   color: white;
 }
 
@@ -80,8 +82,8 @@ figcaption {
 }
 
 #piesvg {
-  width: 150%;
-  height: 150%;
+  width: 50%;
+  height: 50%;
 
 }
  
@@ -89,6 +91,11 @@ figcaption {
 #pie-legend{
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.pieStyling{
+  display: flex;
   width: 100vw;
   flex-wrap: wrap;
 }
@@ -102,3 +109,4 @@ figcaption {
   display: flex;
   justify-content: space-evenly;
 }
+
