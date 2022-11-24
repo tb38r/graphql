@@ -31,14 +31,16 @@
 
 
 
+<div class="pieStyling">
+  <svg height="40%" viewBox="0 0 32 32" id="piesvg">
+    <circle r="10" cx="10" cy="10" fill="white" />
+  </svg>
 
-<svg height="40%" viewBox="0 0 32 32" id="piesvg">
+  <div id="pie-legend"></div>
+  
+  
+</div>
 
-  <circle r="10" cx="10" cy="10" fill="white" />
-
-
-
-</svg>
 
 
 
@@ -50,7 +52,7 @@ let gradesXPScrollWidth = gradesXPDiv.scrollWidth;
 let projectsDiv = document.getElementsByClassName('projects')[0]
 let barChart= document.getElementById('create-complete-bar-chart')
 let pieChart = document.getElementById('piesvg')
-
+let pieLegend = document.getElementById('pie-legend')
 let dataLoaded = false
 
 let gradesObj = {}

@@ -81,7 +81,15 @@ figcaption {
 #piesvg {
   width: 40%;
   height: 40%;
-  /* background: #3f51b5;  */
-  /* transform: rotate(-90deg); */
+
 }
  
+
+#pie-legend{
+  display: flex;
+  justify-content: space-between;
+}
+
+.legends{
+  display: inline-block;
+}
