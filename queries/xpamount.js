@@ -49,14 +49,16 @@ fetchQuery(userOptions(transactionsProgresses))
         }
    }
 
-   const sortedXPObj = Object.fromEntries(
+    sortedXPObj = Object.fromEntries(
      Object.entries(XPObj).sort(([, a], [, b]) => a - b)
      )
 
      return sortedXPObj
      //console.log('GetXPSorted',GetXP(sortedXPObj))
     }).then((data)=>{
+      GetTotalXPForPie(GetXP(data), data)
       addXPToHeader(GetXP(data))
+
       updateGradesObj(transactions)
 
 })

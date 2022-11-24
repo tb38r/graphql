@@ -30,29 +30,17 @@
 </figure>
 
 
-<svg height="20" width="20" viewbox="0 0 20 20" >
-  <circle r="10" cx="10" cy="10" fill="grey" />
-    <circle r="5" cx="10" cy="10" fill="transparent" 
-    stroke="white"
-    stroke-width="10"
-    stroke-dasharray="calc(100*31.42/100) 31.42"
-    transform="rotate(-90) translate(-20)"
-    />
-   
-   
 
 
-</svg>
+<svg height="40%" viewBox="0 0 32 32" id="piesvg">
 
-<svg viewBox="0 0 32 32" id="piesvg">
-  <circle class='first' stroke-dasharray="100 100"></circle>
-  <circle class='second' stroke-dasharray="75 100"></circle>
-  <circle class='third' stroke-dasharray="25 100"></circle>
-
+  <circle r="10" cx="10" cy="10" fill="white" />
 
 
 
 </svg>
+
+
 
     
 <script>
@@ -61,6 +49,7 @@
 let gradesXPScrollWidth = gradesXPDiv.scrollWidth;
 let projectsDiv = document.getElementsByClassName('projects')[0]
 let barChart= document.getElementById('create-complete-bar-chart')
+let pieChart = document.getElementById('piesvg')
 
 let dataLoaded = false
 
@@ -85,6 +74,7 @@ let sortedXPObj
 
 <script type="text/javascript" src="./queries/carousel.js" ></script>
 <script type="text/javascript" src="./queries/barchart.js" ></script>
+<script type="text/javascript" src="./queries/piesvg.js" ></script>
 
 </body>
 

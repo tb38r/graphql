@@ -79,28 +79,9 @@ figcaption {
 }
 
 #piesvg {
-  width: 200px;
-  border-radius: 50%;
-  background: #3f51b5; 
-  transform: rotate(-90deg);
+  width: 40%;
+  height: 40%;
+  /* background: #3f51b5;  */
+  /* transform: rotate(-90deg); */
 }
  
-circle {
-  fill: none;
-  stroke-width: 32;
-  r: 16;
-  cx: 16;
-  cy: 16;
-}
- 
-circle.first {
-  stroke: #00bcd4;
- 
-}
- circle.second {
-  stroke: #ffeb3b;
-}
-  
-circle.third {
-  stroke: purple;
-}

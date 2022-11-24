@@ -37,13 +37,3 @@ function isElementInViewport (el) {
      
 
 
-// <div class="container" id="gradesXPDiv">
-// <div class="scroll-disabler"></div>
-// <div><p>hello</p></div>
-// <p>This is the first News: big news</p>
-// <p>This is the second News: big news</p>
-// <p>This is the third News: big news</p>
-// <p>This is the fourth News: big news</p>
-// <p>This is the fifth News: big news</p>
-// <p>This is the last News: big news</p>
-// </div>
