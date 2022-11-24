@@ -1,5 +1,6 @@
 body {
   font-family: "Open Sans", sans-serif;
+  width: 100vw;
 }
 
 .graphdata{
@@ -79,8 +80,8 @@ figcaption {
 }
 
 #piesvg {
-  width: 40%;
-  height: 40%;
+  width: 150%;
+  height: 150%;
 
 }
  
@@ -88,8 +89,16 @@ figcaption {
 #pie-legend{
   display: flex;
   justify-content: space-between;
+  width: 100vw;
+  flex-wrap: wrap;
 }
 
 .legends{
   display: inline-block;
+}
+
+
+.both-graphs{
+  display: flex;
+  justify-content: space-evenly;
 }
