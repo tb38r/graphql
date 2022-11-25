@@ -77,36 +77,48 @@ body {
 
 figcaption {
   font-weight: bold;
-  color: #000;
+  color: white;
   margin-bottom: 20px;
 }
 
 #piesvg {
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
+  margin-left: 20%;
+  margin-top: 10%;
 
 }
  
 
 #pie-legend{
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  margin-top:7%;
 }
 
-.pieStyling{
+/* .pieStyling{
   display: flex;
   width: 100vw;
   flex-wrap: wrap;
-}
+} */
 
 .legends{
   display: inline-block;
+  color: aliceblue;
+  font-weight: bold;
+
+  
 }
 
 
 .both-graphs{
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
 }
 
+.chart{
+  margin-left: 10%;
+  margin-top: 10%;
+
+}
